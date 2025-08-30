@@ -23,6 +23,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* CSS Variables for Theme Colors */
+        :root {
+            /* Dark Theme (Default) */
+            --bg-primary: #0a192f;
+            --bg-secondary: rgba(10,25,47,0.65);
+            --bg-card: #112240;
+            --bg-card-hover: rgba(17,34,64,0.95);
+            --text-primary: #f8f8f8;
+            --text-secondary: #ccd6f6;
+            --text-muted: #8892b0;
+            --accent-color: #41d4a8;
+            --accent-hover: #35b390;
+            --border-color: #233554;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --navbar-bg: rgba(10, 25, 47, 0.9);
+        }
+
+        /* Light Theme */
+        [data-theme="light"] {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: rgba(248, 249, 250, 0.8);
+            --bg-card: #ffffff;
+            --bg-card-hover: rgba(255, 255, 255, 0.95);
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --accent-color: #3182ce;
+            --accent-hover: #2c5aa0;
+            --border-color: #e2e8f0;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --navbar-bg: rgba(248, 249, 250, 0.95);
+        }
+
         /* Reset and Base Styles */
         * {
             margin: 0;
@@ -34,10 +67,11 @@
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            color: #f8f8f8;
-            background-color: #0a192f;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
             margin: 0;
             padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         
         /* Layout */
@@ -48,14 +82,54 @@
             background: transparent;
         }
         
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            padding: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 20px;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 2px 8px var(--shadow-color);
+        }
+
+        .theme-option {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .theme-option.active {
+            background: var(--accent-color);
+            color: var(--bg-primary);
+        }
+
+        .theme-option:hover:not(.active) {
+            color: var(--accent-color);
+        }
+
         /* Navigation Bar Styles */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(10, 25, 47, 0.9);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            background-color: var(--navbar-bg);
+            box-shadow: 0 2px 10px var(--shadow-color);
             z-index: 1000;
             backdrop-filter: blur(5px);
         }
@@ -70,7 +144,7 @@
         .logo {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
-            color: #41d4a8;
+            color: var(--accent-color);
             text-decoration: none;
             font-weight: 600;
             transition: transform 0.3s ease, text-shadow 0.3s ease;
@@ -78,7 +152,7 @@
         
         .logo:hover {
             transform: scale(1.05);
-            text-shadow: 0 0 10px rgba(65, 212, 168, 0.5);
+            text-shadow: 0 0 10px var(--accent-color);
         }
         
         .main-nav {
@@ -87,7 +161,7 @@
         }
         
         .main-nav a {
-            color: #fff;
+            color: var(--text-primary);
             text-decoration: none;
             margin: 0 15px;
             font-weight: 500;
@@ -104,12 +178,12 @@
             left: 0;
             width: 0;
             height: 2px;
-            background-color: #41d4a8;
+            background-color: var(--accent-color);
             transition: width 0.3s ease;
         }
         
         .main-nav a:hover {
-            color: #41d4a8;
+            color: var(--accent-color);
             transform: translateY(-2px);
         }
         
@@ -175,6 +249,43 @@
         @media (max-width: 600px) {
             .header-name { font-size: 2.2rem; }
             .header-title { font-size: 1.3rem; min-height: 2.1rem; }
+            header {
+                padding: 140px 16px 60px;
+            }
+            
+            /* Mobile text formatting improvements */
+            .header-description {
+                font-size: 1rem;
+                line-height: 1.7;
+                padding: 0 12px;
+                text-align: justify;
+                word-spacing: 0.3px;
+                letter-spacing: 0.1px;
+            }
+            
+            .intro-text h2 {
+                font-size: 2rem;
+                margin-bottom: 15px;
+                text-align: center;
+            }
+            
+            .intro-text h4 {
+                font-size: 1.2rem;
+                margin-bottom: 18px;
+                text-align: center;
+                color: #41d4a8;
+                font-weight: 500;
+            }
+            
+            .intro-text p {
+                font-size: 0.95rem;
+                line-height: 1.65;
+                text-align: justify;
+                word-spacing: 0.2px;
+                letter-spacing: 0.05px;
+                margin-bottom: 16px;
+                padding: 0 6px;
+            }
         }
         
         /* Header Description */
@@ -644,6 +755,19 @@
         }
         
         @media (max-width: 768px) {
+            .theme-toggle {
+                position: absolute;
+                right: 70px;
+                top: 15px;
+                margin-left: 0;
+                transform: scale(0.9);
+            }
+            
+            .theme-option {
+                padding: 4px 8px;
+                font-size: 0.7rem;
+            }
+            
             .mobile-nav-toggle {
                 display: flex; /* Show only on mobile */
                 position: absolute;
@@ -702,19 +826,98 @@
             .intro-content {
                 flex-direction: column;
                 align-items: center;
+                gap: 20px;
             }
             
             .intro-text {
+                order: 2;
                 padding-right: 0;
-                margin-bottom: 30px;
+                margin-bottom: 0;
                 text-align: center;
             }
             
             .intro-image {
+                order: 1;
                 display: flex;
                 justify-content: center;
+                margin-bottom: 20px;
+            }
+        }
+        
+        /* Mobile layout for intro section - image before text */
+        @media (max-width: 768px) {
+            .intro-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
             }
             
+            .intro-text {
+                order: 2;
+                padding-right: 0;
+                margin-bottom: 0;
+                text-align: center;
+            }
+            
+            .intro-image {
+                order: 1;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+        }
+        
+        /* Specific mobile screen sizes - 360×800, 390×844, 393×873 */
+        @media (max-width: 393px) and (min-width: 360px) {
+            .intro-content {
+                gap: 16px;
+            }
+            
+            .intro-image {
+                margin-bottom: 16px;
+            }
+            
+            .intro-text {
+                margin-bottom: 0;
+            }
+            
+            /* Header description formatting for mobile */
+            .header-description {
+                font-size: 0.95rem;
+                line-height: 1.7;
+                padding: 0 8px;
+                text-align: justify;
+                word-spacing: 0.5px;
+                letter-spacing: 0.2px;
+            }
+            
+            /* About me intro text formatting for mobile */
+            .intro-text h2 {
+                font-size: 1.8rem;
+                margin-bottom: 12px;
+                text-align: center;
+            }
+            
+            .intro-text h4 {
+                font-size: 1.1rem;
+                margin-bottom: 16px;
+                text-align: center;
+                color: #41d4a8;
+                font-weight: 500;
+            }
+            
+            .intro-text p {
+                font-size: 0.92rem;
+                line-height: 1.6;
+                text-align: justify;
+                word-spacing: 0.3px;
+                letter-spacing: 0.1px;
+                margin-bottom: 14px;
+                padding: 0 4px;
+            }
+        }
+        
+        @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
             }
@@ -755,7 +958,7 @@
         /* Extra small devices (phones, iPhone SE, etc. - under 400px) */
         @media (max-width: 400px) {
             .container {
-                padding: 0 12px;
+                padding: 0 16px;
             }
             
             .nav-container {
@@ -764,6 +967,17 @@
             
             .logo {
                 font-size: 1.4rem;
+            }
+            
+            .theme-toggle {
+                right: 60px;
+                top: 10px;
+                transform: scale(0.8);
+            }
+            
+            .theme-option {
+                padding: 3px 6px;
+                font-size: 0.65rem;
             }
             
             .mobile-nav-toggle {
@@ -794,12 +1008,38 @@
                 padding: 60px 0;
             }
             
+            /* Enhanced text formatting for small screens */
+            .header-description {
+                font-size: 0.9rem;
+                line-height: 1.6;
+                padding: 0 8px;
+                text-align: justify;
+                word-spacing: 0.4px;
+                letter-spacing: 0.15px;
+            }
+            
             .intro-text h2 {
-                font-size: 1.8rem;
+                font-size: 1.7rem;
+                margin-bottom: 12px;
+                text-align: center;
+            }
+            
+            .intro-text h4 {
+                font-size: 1rem;
+                margin-bottom: 14px;
+                text-align: center;
+                color: #41d4a8;
+                font-weight: 500;
             }
             
             .intro-text p {
-                font-size: 1rem;
+                font-size: 0.88rem;
+                line-height: 1.6;
+                text-align: justify;
+                word-spacing: 0.3px;
+                letter-spacing: 0.1px;
+                margin-bottom: 12px;
+                padding: 0 4px;
             }
             
             .skills-filter {
@@ -862,6 +1102,10 @@
 
         /* Smallest devices (iPhone SE, Galaxy Fold, etc.) */
         @media (max-width: 320px) {
+            .container {
+                padding: 0 10px;
+            }
+            
             .logo {
                 font-size: 1.2rem;
             }
@@ -886,6 +1130,31 @@
             
             .project-content h3 {
                 font-size: 1.3rem;
+            }
+        }
+
+        /* Ideal mobile screen sizes - 360×800, 390×844, 393×873 */
+        @media (max-width: 393px) and (min-width: 360px) {
+            .container {
+                padding: 0 18px;
+            }
+            
+            .project-card,
+            .contact-info-box,
+            .contact-form-box,
+            .education-card,
+            .experience-card,
+            .skill-card {
+                margin-left: 16px !important;
+                margin-right: 16px !important;
+            }
+            
+            .projects-grid {
+                padding: 0 12px;
+            }
+            
+            .skills-grid {
+                padding: 0 12px;
             }
         }
 
@@ -1138,7 +1407,7 @@
         }
         @media (max-width: 600px) {
             .container {
-                padding: 0 6px;
+                padding: 0 16px;
             }
             .get-in-touch-section {
                 padding: 24px 0 10px;
@@ -1147,10 +1416,10 @@
                 flex-direction: column;
                 gap: 12px;
                 align-items: center;
-                padding: 0 2px;
+                padding: 0 8px;
             }
             .contact-info-box, .contact-form-box {
-                padding: 10px 2px 8px 2px;
+                padding: 16px 12px 12px 12px;
                 min-width: 0;
                 max-width: 100%;
                 width: 100%;
@@ -1188,13 +1457,13 @@
         }
         @media (max-width: 400px) {
             .container {
-                padding: 0 2px;
+                padding: 0 12px;
             }
             .get-in-touch-section {
-                padding: 8px 0 2px;
+                padding: 16px 0 8px;
             }
             .contact-info-box, .contact-form-box {
-                padding: 4px 0 4px 0;
+                padding: 12px 8px 8px 8px;
             }
             .contact-form-button {
                 font-size: 0.9rem;
@@ -1544,10 +1813,10 @@
         }
         @media (max-width: 600px) {
             .container {
-                padding: 0 8px;
+                padding: 0 16px;
             }
             .projects-grid {
-                padding: 0 2px;
+                padding: 0 8px;
             }
             .project-card,
             .contact-info-box,
@@ -1555,8 +1824,8 @@
             .education-card,
             .experience-card,
             .skill-card {
-                margin-left: 8px !important;
-                margin-right: 8px !important;
+                margin-left: 12px !important;
+                margin-right: 23px !important;
             }
             .project-card,
             .education-card,
@@ -1569,7 +1838,7 @@
         }
         @media (max-width: 400px) {
             .container {
-                padding: 0 4px;
+                padding: 0 12px;
             }
             .project-card,
             .contact-info-box,
@@ -1577,13 +1846,15 @@
             .education-card,
             .experience-card,
             .skill-card {
-                margin-left: 4px !important;
-                margin-right: 4px !important;
+                margin-left: 8px !important;
+                margin-right: 8px !important;
             }
         }
         @media (max-width: 600px) {
             section {
                 margin-bottom: 28px !important;
+                padding-left: 8px !important;
+                padding-right: 8px !important;
             }
             /* Remove last section's extra margin */
             section:last-of-type {
@@ -1614,6 +1885,11 @@
                 <a href="#certifications">Certifications</a>
                 <a href="#contact">Contact</a>
             </div>
+            <div class="theme-toggle" id="theme-toggle">
+                <div class="theme-option active" data-theme="dark">Dark</div>
+                <div class="theme-option" data-theme="light">Light</div>
+                <div class="theme-option" data-theme="system">System</div>
+            </div>
             <button class="mobile-nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation menu">☰</button>
         </div>
     </nav>
@@ -1625,8 +1901,7 @@
             <div class="header-title">
                 <span class="header-title-accent" id="typing-role"></span>
             </div>
-            <p class="header-description">Creative and detail-oriented web developer with a strong foundation in front-end and back-end technologies, dedicated to building responsive, user-friendly websites and web applications.
-                Also passionate about web design and UI/UX, with a keen eye for visual aesthetics, usability, and seamless user experiences. Continuously learning and exploring modern design trends, tools, and frameworks to craft engaging digital interfaces.</p>
+            <p class="header-description">Creative and detail-oriented web developer with a strong foundation in front-end and back-end technologies, Creative and detail-oriented Web Developer with a passion for UI/UX and business development. I enjoy turning ideas into digital solutions that not only look great but also deliver real business value. With a focus on teamwork, leadership, and strategy, I aim to bridge the gap between technology and business growth.</p>
         </header>
     </div>
 
@@ -1636,8 +1911,8 @@
                 <div class="intro-text">
                     <h2>About Me</h2>
                     <h4>A passionate Web Developer based in Gujarat, India </h4>
-                    <p>  I am a Full Stack Developer. I specialize in PHP, HTML - CSS and JavaScript development, and modern web technologies. My passion lies in creating intuitive and performant user experiences that bridge the gap between technology and user needs.</p>
-                    <p>Throughout my career, I've worked with startups and Lerned My self to Make Projecects and deliver innovative-efficient solutions that solve real-world problems. I am a strong team player with a knack for communication and logical thinking, and I am constantly learning and exploring new technologies to stay at the forefront of web development.</p>
+                    <p>  I am a Full Stack Developer. I specialize in PHP, HTML - CSS and JavaScript development, and modern web technologies. What sets me apart is my ability to combine technology with strategy, I understand how products affect clients and business outcomes. Along with my technical strengths, I thrive in team environments, take initiative, and bring leadership qualities that drive collaboration and results.</p>
+                    <p>I am passionate about delivering work that adds real value, whether through building efficient web applications or supporting business development goals.</p>
                     
                     <div class="personal-info">
                         <div class="info-box">
@@ -1864,10 +2139,10 @@
                             <div class="experience-icon"><i class="fas fa-briefcase"></i></div>
                             <div class="experience-job">php Developer - Capstone Project [E-commerce Website - Full Stack Development]</div>
                         </div>
-                        <div class="experience-company">Gujarat Technology University-Dalia College of Diploma Computer Engineering</div>
+                        <div class="experience-company">Gujarat Technology University </div>
                         <div class="experience-dates"><i class="fas fa-calendar-alt"></i> Jan 2023 - May 2023</div>
                         <div class="experience-desc-text">
-                            During my diploma, I pursued self-learning in full stack development, starting with HTML, CSS, and Bootstrap for front-end design. I then learned PHP to handle both front-end and back-end development, including database integration. In my final year project, I built a full-stack e-commerce website with complete CRUD operations, showcasing my ability to develop dynamic web applications from scratch.
+                            Full-Stack E-Commerce Website Built as my final year project, this application includes complete CRUD operations, product management, and database integration. I designed and developed it end-to-end, handling both front-end and back-end workflows, which highlights my ability to create dynamic, user-friendly web applications from scratch
                         </div>
                     </div>
                 </div>
@@ -1880,7 +2155,7 @@
                         <div class="experience-company"> Venome technologies , Anand, Gujarat</div>
                         <div class="experience-dates"><i class="fas fa-calendar-alt"></i> May 2025 - June 2025 </div>
                         <div class="experience-desc-text">
-                            During my internship, I gained hands-on experience in web development by working with HTML, CSS, and JavaScript, and I also explored modern tools and frameworks. I learned to create responsive web designs that adapt to different screen sizes and devices. Throughout the internship, I completed several mini-projects that enhanced my front-end skills and gave me practical exposure to real-world development workflows.
+                            During my internship, Gained hands-on experience in building responsive, user-friendly websites using HTML, CSS, and JavaScript, while exploring modern tools and frameworks. Completed multiple mini-projects that strengthened my front-end skills and provided practical exposure to real-world development workflows
                         </div>
                     </div>
                 </div>
@@ -1891,7 +2166,7 @@
     <section id="education" class="education-section">
         <div class="container">
             <h2 class="education-title">Education</h2>
-            <div class="education-desc">My academic journey that has shaped my knowledge and skills in computer science and web development.</div>
+            <div class="education-desc">My academic journey .</div>
             <div class="education-cards">
                 <div class="education-card">
                     <div class="education-card-content">
@@ -1901,7 +2176,7 @@
                         </div>
                         <div class="education-university">CVM University, V.V.Nagar, Anand, Gujarat</div>
                         <div class="education-dates"><i class="fas fa-calendar-alt"></i> June 2023 - June 2026 (Ongoing)</div>
-                        <div class="education-desc-text">Specialized in Software Engineering with focus on distributed systems and web development. Focuses on programming, networking, databases, and web development, preparing students for careers in software development.</div>
+                        <div class="education-desc-text">Specialized in Software Engineering with focus on distributed systems and web development. </div>
                     </div>
                 </div>
                 <div class="education-card">
@@ -1912,7 +2187,7 @@
                         </div>
                         <div class="education-university">Gujarat Technology University (GTU), Gujarat, India</div>
                         <div class="education-dates"><i class="fas fa-calendar-alt"></i> 2020 - 2023</div>
-                        <div class="education-desc-text">Graduated with honors. Participated in multiple hackathons and open-source projects. Covered programming, digital electronics, and computer systems, providing foundational skills for entry-level roles in IT or further studies.</div>
+                        <div class="education-desc-text">Learned web development from scratch while also developing strong management and leadership skills, improving my ability to take initiative, coordinate teams, and handle responsibilities with a business-minded approach.</div>
                     </div>
                 </div>
             </div>
@@ -2056,6 +2331,51 @@
 </script>
 
     <script>
+        // Theme switching functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeOptions = document.querySelectorAll('.theme-option');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to 'dark'
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        function setTheme(theme) {
+            if (theme === 'system') {
+                theme = systemPrefersDark ? 'dark' : 'light';
+            }
+            
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            
+            // Update active button
+            themeOptions.forEach(option => {
+                option.classList.remove('active');
+                if (option.getAttribute('data-theme') === theme || 
+                    (theme === 'system' && option.getAttribute('data-theme') === 'system')) {
+                    option.classList.add('active');
+                }
+            });
+        }
+
+        // Initialize theme
+        setTheme(savedTheme);
+
+        // Theme toggle event listeners
+        themeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const theme = option.getAttribute('data-theme');
+                setTheme(theme);
+            });
+        });
+
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (localStorage.getItem('theme') === 'system') {
+                setTheme('system');
+            }
+        });
+
         // Mobile navigation toggle
         const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
         const mainNav = document.querySelector('.main-nav');
@@ -2190,7 +2510,7 @@
 
     <script>
         // Typing animation for header role
-        const roles = ["Full Stack Developer", "Web Developer"];
+        const roles = ["Full Stack Developer", "Web Developer", "Business Developer"];
         let roleIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
