@@ -1574,6 +1574,59 @@
             align-items: center;
             overflow: hidden;
         }
+        /* Modern circular gradient ring frame for profile photo */
+        .profile-frame {
+            position: relative;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            padding: 6px;
+            box-shadow: 0 20px 50px rgba(65,212,168,0.15), 0 8px 20px rgba(10,175,255,0.12);
+            isolation: isolate;
+            overflow: visible;
+        }
+        .profile-frame::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #41d4a8, #0aafff, #a259ff, #ff6ec4, #41d4a8);
+            z-index: 0;
+            animation: spinRing 10s linear infinite;
+        }
+        .profile-frame::before {
+            content: "";
+            position: absolute;
+            inset: -12px;
+            border-radius: 50%;
+            background: radial-gradient(60% 60% at 50% 35%, rgba(65,212,168,0.25), transparent 60%),
+                        radial-gradient(40% 40% at 65% 70%, rgba(10,175,255,0.18), transparent 60%);
+            filter: blur(30px);
+            z-index: -1;
+        }
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #0a192f;
+            border: 5px solid rgba(17,34,64,0.9);
+            box-shadow: inset 0 0 0 2px rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.35);
+            position: relative;
+            z-index: 1;
+        }
+        @keyframes spinRing {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @media (max-width: 768px) {
+            .profile-frame { width: 200px; height: 200px; }
+        }
+        @media (max-width: 400px) {
+            .profile-frame { width: 170px; height: 170px; }
+        }
         .intro-image img {
             position: relative;
             z-index: 1;
@@ -1802,7 +1855,9 @@
                     <a href="./assets/rushi-mistry-resume.pdf" class="button" download target="_blank" rel="noopener" style="margin-left: 16px;">Download Resume</a>
                 </div>
                 <div class="intro-image" style="display: flex; justify-content: center; align-items: center; position: relative; background: none; box-shadow: none;">
-                    <img src="./assets/rushi-profile.jpg.jpeg" alt="Rushi Mistry" style="width: 210px; height: 210px; object-fit: cover; border-radius: 50%; border: 5px solid #fff; box-shadow: 0 4px 24px rgba(0,0,0,0.12); background: #fff; transition: transform 0.25s cubic-bezier(.4,0,.2,1), box-shadow 0.25s cubic-bezier(.4,0,.2,1); display: block;">
+                    <div class="profile-frame" aria-hidden="false">
+                        <img class="profile-photo" src="./assets/rushi-profile.jpg.jpeg" alt="Rushi Mistry">
+                    </div>
                 </div>
             </div>
         </div>
@@ -1823,10 +1878,10 @@
                             <span class="tech-tag">MySQL</span>
                             <span class="tech-tag">CRUD Operation</span>
                         </div>
-                        <div class="project-links">
+                        <!-- <div class="project-links">
                             <a href="#" class="button">View Project</a>
                             <a href="https://github.com" class="github-link" aria-label="View GitHub Repository"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"></a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="project-card">
@@ -1840,10 +1895,10 @@
                             <span class="tech-tag">CSS </span>
                             <span class="tech-tag">MySQL</span>
                         </div>
-                        <div class="project-links">
+                        <!-- <div class="project-links">
                             <a href="#" class="button">View Project</a>
                             <a href="https://github.com" class="github-link" aria-label="View GitHub Repository"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"></a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="project-card">
@@ -1856,10 +1911,6 @@
                             <span class="tech-tag">HTML5</span>
                             <span class="tech-tag">CSS</span>
                             <span class="tech-tag">MySQL</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="button">View Project</a>
-                            <a href="https://github.com" class="github-link" aria-label="View GitHub Repository"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"></a>
                         </div>
                     </div>
                 </div>
@@ -1902,7 +1953,7 @@
                         <span class="skill-level">Intermediate</span>
                     </div>
                     <div class="skill-card">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" alt="Tailwind CSS" class="skill-icon">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" class="skill-icon">
                         <h3 class="skill-name">Tailwind CSS</h3>
                         <span class="skill-level">Intermediate</span>
                     </div>
@@ -1915,16 +1966,6 @@
                 
                 <!-- Backend Skills -->
                 <div class="skills-grid skill-category" id="backend-skills">
-                    <div class="skill-card">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="skill-icon">
-                        <h3 class="skill-name">Node.js</h3>
-                        <span class="skill-level">Intermediate</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" class="skill-icon">
-                        <h3 class="skill-name">MongoDB</h3>
-                        <span class="skill-level">Intermediate</span>
-                    </div>
                     <div class="skill-card">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="skill-icon">
                         <h3 class="skill-name">MySQL</h3>
@@ -1942,12 +1983,12 @@
                     <div class="skill-card">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="skill-icon" style="background-color: white; border-radius: 50%; padding: 5px;">
                         <h3 class="skill-name">GitHub</h3>
-                        <span class="skill-level">Advanced</span>
+                        <span class="skill-level">Intermediate</span>
                     </div>
                     <div class="skill-card">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" class="skill-icon">
                         <h3 class="skill-name">Figma</h3>
-                        <span class="skill-level">Intermediate</span>
+                        <span class="skill-level">Advanced</span>
                     </div>
                     <div class="skill-card">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" class="skill-icon">
@@ -1957,7 +1998,7 @@
                     <div class="skill-card">
                         <img src="https://img.icons8.com/color/96/000000/ms-word.png" alt="MS Word" class="skill-icon">
                         <h3 class="skill-name">MS Word</h3>
-                        <span class="skill-level">Advanced</span>
+                        <span class="skill-level">Intermediate</span>
                     </div>
                     <div class="skill-card">
                         <img src="https://www.apachefriends.org/images/xampp-logo-ac950edf.svg" alt="XAMPP" class="skill-icon">
@@ -2004,7 +2045,7 @@
                         <div class="experience-company"> Venome technologies , Anand, Gujarat</div>
                         <div class="experience-dates"><i class="fas fa-calendar-alt"></i> May 2025 - June 2025 </div>
                         <div class="experience-desc-text">
-                            During my internship, Gained hands-on experience in building responsive, user-friendly websites using HTML, CSS, and JavaScript, while exploring modern tools and frameworks. Completed multiple mini-projects that strengthened my front-end skills and provided practical exposure to real-world development workflows
+                            During my internship, Gained hands-on experience in building responsive, user-friendly websites using HTML, CSS, and JavaScript, while exploring modern tools and frameworks, and also learned & Practiced UI/UX Design using Figma. Completed multiple mini-projects that strengthened my front-end skills and provided practical exposure to real-world development workflows.
                         </div>
                     </div>
                 </div>
