@@ -82,45 +82,6 @@
             background: transparent;
         }
         
-        /* Theme Toggle Button */
-        .theme-toggle {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 25px;
-            padding: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-left: 20px;
-        }
-
-        .theme-toggle:hover {
-            border-color: var(--accent-color);
-            box-shadow: 0 2px 8px var(--shadow-color);
-        }
-
-        .theme-option {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .theme-option.active {
-            background: var(--accent-color);
-            color: var(--bg-primary);
-        }
-
-        .theme-option:hover:not(.active) {
-            color: var(--accent-color);
-        }
 
         /* Navigation Bar Styles */
         .navbar {
@@ -755,18 +716,6 @@
         }
         
         @media (max-width: 768px) {
-            .theme-toggle {
-                position: absolute;
-                right: 70px;
-                top: 15px;
-                margin-left: 0;
-                transform: scale(0.9);
-            }
-            
-            .theme-option {
-                padding: 4px 8px;
-                font-size: 0.7rem;
-            }
             
             .mobile-nav-toggle {
                 display: flex; /* Show only on mobile */
@@ -969,16 +918,6 @@
                 font-size: 1.4rem;
             }
             
-            .theme-toggle {
-                right: 60px;
-                top: 10px;
-                transform: scale(0.8);
-            }
-            
-            .theme-option {
-                padding: 3px 6px;
-                font-size: 0.65rem;
-            }
             
             .mobile-nav-toggle {
                 right: 12px;
@@ -1141,7 +1080,6 @@
             
             .project-card,
             .contact-info-box,
-            .contact-form-box,
             .education-card,
             .experience-card,
             .skill-card {
@@ -1242,7 +1180,7 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-        .contact-info-box, .contact-form-box {
+        .contact-info-box {
             background: rgba(10,25,47,0.65);
             border: 1.5px solid #233554;
             border-radius: 12px;
@@ -1250,7 +1188,8 @@
             padding: 36px 32px 32px 32px;
             flex: 1 1 340px;
             min-width: 320px;
-            max-width: 480px;
+            max-width: 600px;
+            margin: 0 auto;
         }
         .contact-info-box {
             margin-bottom: 24px;
@@ -1324,81 +1263,13 @@
             color: #0a192f;
             border-color: #41d4a8;
         }
-        .contact-form-title {
-            font-size: 1.5rem;
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            margin-bottom: 28px;
-            color: #fff;
-        }
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-        .contact-form-row {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .contact-form-row > .contact-form-group {
-            flex: 1;
-            min-width: 0;
-            max-width: 100%;
-        }
-        .contact-form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            min-width: 0;
-            max-width: 100%;
-        }
-        .contact-form-label {
-            color: #bfcbe6;
-            font-size: 1rem;
-            font-weight: 500;
-        }
-        .contact-form-input, .contact-form-textarea {
-            background: #0a192f;
-            border: 1.5px solid #233554;
-            border-radius: 6px;
-            color: #fff;
-            font-size: 1rem;
-            padding: 12px 14px;
-            outline: none;
-            transition: border 0.2s;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .contact-form-input:focus, .contact-form-textarea:focus {
-            border-color: #41d4a8;
-        }
-        .contact-form-textarea {
-            min-height: 100px;
-            resize: none;
-        }
-        .contact-form-button {
-            background: #41d4a8;
-            color: #0a192f;
-            border: none;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            padding: 14px 0;
-            margin-top: 8px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .contact-form-button:hover {
-            background: #35b390;
-        }
         @media (max-width: 900px) {
             .get-in-touch-container {
                 flex-direction: column;
                 gap: 24px;
                 align-items: center;
             }
-            .contact-info-box, .contact-form-box {
+            .contact-info-box {
                 max-width: 100%;
                 min-width: 0;
                 width: 100%;
@@ -1418,7 +1289,7 @@
                 align-items: center;
                 padding: 0 8px;
             }
-            .contact-info-box, .contact-form-box {
+            .contact-info-box {
                 padding: 16px 12px 12px 12px;
                 min-width: 0;
                 max-width: 100%;
@@ -1426,11 +1297,7 @@
                 margin: 0 auto 10px auto;
                 box-sizing: border-box;
             }
-            .contact-form-row {
-                flex-direction: column;
-                gap: 8px;
-            }
-            .contact-info-title, .contact-form-title {
+            .contact-info-title {
                 font-size: 1rem;
                 margin-bottom: 12px;
             }
@@ -1438,16 +1305,8 @@
                 font-size: 0.95rem;
                 margin-bottom: 8px;
             }
-            .contact-info-label, .contact-info-value, .contact-info-location, .contact-form-label {
+            .contact-info-label, .contact-info-value, .contact-info-location {
                 font-size: 0.92rem;
-            }
-            .contact-form-input, .contact-form-textarea {
-                font-size: 0.92rem;
-                padding: 8px 6px;
-            }
-            .contact-form-button {
-                font-size: 0.95rem;
-                padding: 10px 0;
             }
             .contact-info-icon, .contact-social-link {
                 width: 28px;
@@ -1462,11 +1321,8 @@
             .get-in-touch-section {
                 padding: 16px 0 8px;
             }
-            .contact-info-box, .contact-form-box {
+            .contact-info-box {
                 padding: 12px 8px 8px 8px;
-            }
-            .contact-form-button {
-                font-size: 0.9rem;
             }
         }
 
@@ -1820,7 +1676,6 @@
             }
             .project-card,
             .contact-info-box,
-            .contact-form-box,
             .education-card,
             .experience-card,
             .skill-card {
@@ -1842,7 +1697,6 @@
             }
             .project-card,
             .contact-info-box,
-            .contact-form-box,
             .education-card,
             .experience-card,
             .skill-card {
@@ -1884,11 +1738,6 @@
                 <a href="#education">Education</a>
                 <a href="#certifications">Certifications</a>
                 <a href="#contact">Contact</a>
-            </div>
-            <div class="theme-toggle" id="theme-toggle">
-                <div class="theme-option active" data-theme="dark">Dark</div>
-                <div class="theme-option" data-theme="light">Light</div>
-                <div class="theme-option" data-theme="system">System</div>
             </div>
             <button class="mobile-nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation menu">☰</button>
         </div>
@@ -2264,36 +2113,11 @@
                 </div>
                 <div class="contact-social-title">Follow Me</div>
                 <div class="contact-social-list">
-                    <a href="#" class="contact-social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="contact-social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="#" class="contact-social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/rushi-mistry-464513351?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="contact-social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/rushi3223" class="contact-social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/ll_ig_rushi_ll?igsh=MWNhN2g1dGR0b3ppMA==" class="contact-social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="#" class="contact-social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                 </div>
-            </div>
-            <!-- Contact Form -->
-            <div class="contact-form-box">
-                <div class="contact-form-title">Send a Message</div>
-                <form class="contact-form" id="contact-form">
-                    <div class="contact-form-row">
-                        <div class="contact-form-group">
-                            <label class="contact-form-label" for="name">Your Name</label>
-                            <input class="contact-form-input" type="text" id="name" name="name" placeholder=" XYZ-NAME" required />
-                        </div>
-                        <div class="contact-form-group">
-                            <label class="contact-form-label" for="email">Your Email</label>
-                            <input class="contact-form-input" type="email" id="email" name="email" placeholder="xyz@example.com" required />
-                        </div>
-                    </div>
-                    <div class="contact-form-group">
-                        <label class="contact-form-label" for="subject">Subject</label>
-                        <input class="contact-form-input" type="text" id="subject" name="subject" placeholder="What is this about?" required />
-                    </div>
-                    <div class="contact-form-group">
-                        <label class="contact-form-label" for="message">Message</label>
-                        <textarea class="contact-form-textarea" id="message" name="message" placeholder="How can I help you?" rows="5" required></textarea>
-                    </div>
-                    <button class="contact-form-button" type="submit">Send Message</button>
-                </form>
             </div>
             </div>
         </div>
@@ -2331,50 +2155,8 @@
 </script>
 
     <script>
-        // Theme switching functionality
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeOptions = document.querySelectorAll('.theme-option');
-        const html = document.documentElement;
-
-        // Check for saved theme preference or default to 'dark'
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-        function setTheme(theme) {
-            if (theme === 'system') {
-                theme = systemPrefersDark ? 'dark' : 'light';
-            }
-            
-            html.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
-            
-            // Update active button
-            themeOptions.forEach(option => {
-                option.classList.remove('active');
-                if (option.getAttribute('data-theme') === theme || 
-                    (theme === 'system' && option.getAttribute('data-theme') === 'system')) {
-                    option.classList.add('active');
-                }
-            });
-        }
-
-        // Initialize theme
-        setTheme(savedTheme);
-
-        // Theme toggle event listeners
-        themeOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                const theme = option.getAttribute('data-theme');
-                setTheme(theme);
-            });
-        });
-
-        // Listen for system theme changes
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-            if (localStorage.getItem('theme') === 'system') {
-                setTheme('system');
-            }
-        });
+        // Set dark theme as default
+        document.documentElement.setAttribute('data-theme', 'dark');
 
         // Mobile navigation toggle
         const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
@@ -2510,7 +2292,7 @@
 
     <script>
         // Typing animation for header role
-        const roles = ["Full Stack Developer", "Web Developer", "Business Developer"];
+        const roles = ["UI/UX Designer", "Web Developer", "Business Developer"];
         let roleIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
